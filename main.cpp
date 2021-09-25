@@ -22,102 +22,102 @@ void parser() {
   infile.open("../data/test_book.txt");
 
   int kMaxNumLines = 80;
-  int parsedCounter;
+  int parsed_counter;
 
   char line[kMaxNumLines];
-  char parsedData[2 * kMaxNumLines];
+  char parsed_data[2 * kMaxNumLines];
 
-  bool endParse = false;
-  bool outerBracketNotFound = false;
-  bool innerBracketNotFound = false;
+  bool end_parse = false;
+  bool outer_bracket_not_found = false;
+  bool inner_bracket_not_found = false;
 
-  while (!endParse && infile.good()) {
+  while (!end_parse && infile.good()) {
     infile.getline(line, kMaxNumLines);
-    string pageNumber;
+    string page_number;
     if (line[0] == '<') {
       if (line[1] == '-') {
-        endParse = true;
+        end_parse = true;
       } else {
-        char pageNumberBuffer[80];
+        char page_number_buffer[80];
         int i = 1;
         while (line[i] != '>') {
-          pageNumberBuffer[i - 1] = line[i];
+          page_number_buffer[i - 1] = line[i];
           i++;
         }
-        pageNumberBuffer[i - 1] = '\0';
-        pageNumber = pageNumberBuffer;
-        cout << pageNumber << endl;
+        page_number_buffer[i - 1] = '\0';
+        page_number = page_number_buffer;
+        cout << page_number << endl;
       }
     } else {
 
       for (int i = 0; i < strlen(line); i++) {
 
-        int lineCounter = i;
-        if (outerBracketNotFound) {
-          while (line[lineCounter] != ']') {
-            if (line[lineCounter] == '[') {
-              lineCounter++;
-              while (line[lineCounter] != ']') {
-                parsedData[parsedCounter] = line[lineCounter];
-                parsedCounter++;
-                lineCounter++;
+        int line_counter = i;
+        if (outer_bracket_not_found) {
+          while (line[line_counter] != ']') {
+            if (line[line_counter] == '[') {
+              line_counter++;
+              while (line[line_counter] != ']') {
+                parsed_data[parsed_counter] = line[line_counter];
+                parsed_counter++;
+                line_counter++;
               }
-              lineCounter++;
+              line_counter++;
             }
-            if (line[lineCounter] == ']') {
+            if (line[line_counter] == ']') {
               break;
             }
 
-            parsedData[parsedCounter] = line[lineCounter];
-            lineCounter++;
-            parsedCounter++;
+            parsed_data[parsed_counter] = line[line_counter];
+            line_counter++;
+            parsed_counter++;
           }
-          parsedData[parsedCounter] = '\0';
+          parsed_data[parsed_counter] = '\0';
 
-          outerBracketNotFound = false;
+          outer_bracket_not_found = false;
 
-          cout << parsedData << endl;
+          cout << parsed_data << endl;
 
         } else {
 
-          parsedCounter = 0;
+          parsed_counter = 0;
 
           if (line[i] == '[') {
-            lineCounter++;
-            while (line[lineCounter] != ']') {
-              if (line[lineCounter] == '[') {
-                lineCounter++;
-                while (line[lineCounter] != ']') {
-                  if (lineCounter >= strlen(line)) {
-                    innerBracketNotFound = true;
+            line_counter++;
+            while (line[line_counter] != ']') {
+              if (line[line_counter] == '[') {
+                line_counter++;
+                while (line[line_counter] != ']') {
+                  if (line_counter >= strlen(line)) {
+                    inner_bracket_not_found = true;
                     break;
                   }
-                  parsedData[parsedCounter] = line[lineCounter];
-                  parsedCounter++;
-                  lineCounter++;
+                  parsed_data[parsed_counter] = line[line_counter];
+                  parsed_counter++;
+                  line_counter++;
                 }
-                lineCounter++;
+                line_counter++;
               }
 
-              if (lineCounter >= strlen(line)) {
-                outerBracketNotFound = true;
+              if (line_counter >= strlen(line)) {
+                outer_bracket_not_found = true;
                 break;
               }
 
-              if (innerBracketNotFound || line[lineCounter] == ']') {
+              if (inner_bracket_not_found || line[line_counter] == ']') {
                 break;
               }
 
-              parsedData[parsedCounter] = line[lineCounter];
-              lineCounter++;
-              parsedCounter++;
+              parsed_data[parsed_counter] = line[line_counter];
+              line_counter++;
+              parsed_counter++;
             }
-            parsedData[parsedCounter] = '\0';
-            if (!outerBracketNotFound || !innerBracketNotFound)
-              cout << parsedData << endl;
+            parsed_data[parsed_counter] = '\0';
+            if (!outer_bracket_not_found || !inner_bracket_not_found)
+              cout << parsed_data << endl;
           }
 
-          if (outerBracketNotFound || innerBracketNotFound) {
+          if (outer_bracket_not_found || inner_bracket_not_found) {
             break;
           }
         }

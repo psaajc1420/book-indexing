@@ -1,0 +1,27 @@
+<3>
+Preface:
+
+[Advanced [Data Structures] and [Algorithm Implementation]] is a new
+exciting text from Mustang Publishers aimed at upper division
+undergraduate courses or introductory graduate courses.
+
+<4>
+Some of the topics covered are
+ * [Fast String Matching]
+ * [[B+ Tree] Implementation]
+ * [A+ Graph Traversal]
+<5>
+fdafdsasafasd dfafasdffsdfa [Stacks
+ and [Priority Queues] using [Python]] fdafasdfs [C++ [Fundamentals]]
+<7>
+fdafsd [[
+sdfdasf] and [hello world] cool]
+<10>
+In a [B+ Tree], the leaf nodes are connected as a [doubly linked list].
+<-1>
+
+<123>
+<fdafsd>dfasfd
+sdf
+asdfsdfa
+dfasdffssdfsf
